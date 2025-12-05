@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: student-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodbdata:/data/db
+    environment:
+      # Set a default database name (optional, useful for init scripts)
+      MONGO_INITDB_DATABASE: studentdb
+    restart: unless-stopped
+
