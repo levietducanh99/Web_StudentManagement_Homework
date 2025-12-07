@@ -34,28 +34,40 @@ export default function StudentForm({ onAdd }) {
   };
 
   return (
-    <form onSubmit={submit} style={{ marginBottom: 12 }}>
-      {error && <div style={{ color: 'red', marginBottom: 8 }}>{error}</div>}
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+    <form onSubmit={submit} className="student-form" aria-live="polite">
+      {error && <div className="form-error" role="alert">{error}</div>}
+      <div className="form-row">
+        <label style={{display:'none'}} htmlFor="s-name">Name</label>
         <input
+          id="s-name"
+          className="form-field"
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          style={{ padding: 6 }}
+          aria-invalid={!!error && !name}
         />
+
+        <label style={{display:'none'}} htmlFor="s-age">Age</label>
         <input
+          id="s-age"
+          className="form-field form-input--small"
           placeholder="Age"
           value={age}
           onChange={(e) => setAge(e.target.value)}
-          style={{ width: 80, padding: 6 }}
+          aria-invalid={!!error && !age}
         />
+
+        <label style={{display:'none'}} htmlFor="s-class">Class</label>
         <input
+          id="s-class"
+          className="form-field"
           placeholder="Class"
           value={className}
           onChange={(e) => setClassName(e.target.value)}
-          style={{ padding: 6 }}
+          aria-invalid={!!error && !className}
         />
-        <button type="submit" style={{ padding: '6px 12px' }} disabled={submitting}>{submitting ? 'Adding...' : 'Add'}</button>
+
+        <button type="submit" className="form-submit" disabled={submitting}>{submitting ? 'Adding...' : 'Add'}</button>
       </div>
     </form>
   );

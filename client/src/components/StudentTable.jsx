@@ -2,29 +2,35 @@ import React from 'react';
 
 export default function StudentTable({ students = [], onDelete }) {
   return (
-    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <table className="table-root" aria-live="polite">
       <thead>
         <tr>
-          <th style={{ textAlign: 'left', borderBottom: '1px solid #ccc', padding: 8 }}>Name</th>
-          <th style={{ textAlign: 'left', borderBottom: '1px solid #ccc', padding: 8 }}>Age</th>
-          <th style={{ textAlign: 'left', borderBottom: '1px solid #ccc', padding: 8 }}>Class</th>
-          <th style={{ textAlign: 'left', borderBottom: '1px solid #ccc', padding: 8 }}>Actions</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Class</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        {students.map((s) => (
-          <tr key={s.id}>
-            <td style={{ padding: 8, borderBottom: '1px solid #eee' }}>{s.name}</td>
-            <td style={{ padding: 8, borderBottom: '1px solid #eee' }}>{s.age}</td>
-            <td style={{ padding: 8, borderBottom: '1px solid #eee' }}>{s.className || s.class}</td>
-            <td style={{ padding: 8, borderBottom: '1px solid #eee' }}>
-              <button onClick={() => onDelete && onDelete(s.id)} style={{ padding: '4px 8px' }}>Delete</button>
+        {students.map((s, idx) => (
+          <tr key={s.id || idx} className="table-row">
+            <td>{s.name}</td>
+            <td>{s.age}</td>
+            <td>{s.className || s.class}</td>
+            <td>
+              <button
+                onClick={() => onDelete && onDelete(s.id)}
+                className="action-btn action-btn--danger"
+                aria-label={`Delete ${s.name}`}
+              >
+                Delete
+              </button>
             </td>
           </tr>
         ))}
         {students.length === 0 && (
           <tr>
-            <td colSpan={4} style={{ padding: 8, color: '#666' }}>No students</td>
+            <td colSpan={4} className="empty-state">No students yet — add one above.</td>
           </tr>
         )}
       </tbody>

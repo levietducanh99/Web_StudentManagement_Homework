@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StudentForm from '../components/StudentForm.jsx';
 import StudentTable from '../components/StudentTable.jsx';
+import Loading from '../components/Loading.jsx';
 import api from '../api/axios.js';
 
 export default function Home() {
@@ -56,13 +57,13 @@ export default function Home() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ padding: 20 }}>
       <h1>Student Manager</h1>
       {error && <div style={{ color: 'red', marginBottom: 8 }}>{error}</div>}
       <StudentForm onAdd={addStudent} />
-      <hr />
+      <div className="separator" />
       {loading ? (
-        <div>Loading...</div>
+        <Loading />
       ) : (
         <StudentTable students={students} onDelete={removeStudent} />
       )}
