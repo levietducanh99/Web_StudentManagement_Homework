@@ -61,6 +61,15 @@ h1{margin:0 0 12px 0;font-size:20px}
 .spinner{width:18px;height:18px;border-radius:50%;border:3px solid rgba(0,0,0,0.08);border-top-color:var(--accent);animation:spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
+/* Modal / dialog styles */
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.4);display:flex;align-items:center;justify-content:center;z-index:1000}
+.modal-panel{background:var(--card);padding:18px;border-radius:10px;box-shadow:var(--surface-shadow);max-width:720px;width:95%}
+.modal-close{position:absolute;right:14px;top:12px;border:none;background:transparent;font-size:18px;cursor:pointer}
+
+.confirm-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.confirm-danger{background:var(--danger);color:white;border:none;padding:8px 12px;border-radius:6px;cursor:pointer}
+.confirm-cancel{background:white;border:1px solid #e6e9ee;padding:8px 12px;border-radius:6px;cursor:pointer}
+
 /* Responsive: stack inputs on narrow screens */
 @media (max-width:600px){
   .form-row{flex-direction:column;align-items:stretch}

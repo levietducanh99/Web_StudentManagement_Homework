@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function StudentTable({ students = [], onDelete }) {
+export default function StudentTable({ students = [], onDelete, onEdit }) {
   return (
     <table className="table-root" aria-live="polite">
       <thead>
@@ -17,7 +17,15 @@ export default function StudentTable({ students = [], onDelete }) {
             <td>{s.name}</td>
             <td>{s.age}</td>
             <td>{s.className || s.class}</td>
-            <td>
+            <td style={{ display: 'flex', gap: 8 }}>
+              <button
+                onClick={() => onEdit && onEdit(s)}
+                className="action-btn"
+                aria-label={`Edit ${s.name}`}
+              >
+                Edit
+              </button>
+
               <button
                 onClick={() => onDelete && onDelete(s.id)}
                 className="action-btn action-btn--danger"
